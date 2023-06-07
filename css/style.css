@@ -1,1 +1,131 @@
 @import url('reset.css');
+
+body {
+    font-family: 'Montserrat';
+}
+
+.container {
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: rgba(94, 93, 88, 0.6);
+}
+
+.header__body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 6px
+}
+
+.logo__name {
+    font-size: 32px;
+    line-height: 1.5;
+    color: #FFFFFF;
+}
+
+.logo__name_bold {
+    font-weight: 700;
+    color: #18CFAB;
+}
+
+.header__navbar {
+    display: flex;
+    align-items: center;
+}
+
+.header__menu {
+    width: 610px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__link {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 48px 0;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    border-bottom: 2px solid transparent;
+    transition: .3s;
+}
+
+.header__link:hover {
+    color: #18CFAB;
+    border-color: #18CFAB;
+}
+
+.header__search {
+    height: 21px;
+    width: 21px;
+    margin-left: 27px;
+    background: url('../icons/search.png') center/cover no-repeat;
+}
+
+/* intro */
+
+.intro {
+    padding-top: 122px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: url('../img/bg/banner.png') center/cover no-repeat;
+}
+
+.intro__title {
+    font-weight: 700;
+    font-size: 35px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 22px;
+}
+
+.intro__title span{
+    color: #18CFAB;
+}
+
+.intro__title_bold {
+    font-size: 78px;
+}
+
+.intro__subtitle {
+    font-size: 34px;
+    text-align: center;
+    color: #D4D4D4;
+    margin-bottom: 129px;
+}
+
+.intro__btns {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 360px;
+}
+
+.intro__btn {
+    background: #18CFAB;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 2.12;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 -5px 0 #fff;
+}
+
+.intro__btn_blue {
+    background: #00CBF6;
+}
