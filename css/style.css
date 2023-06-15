@@ -82,6 +82,7 @@ body {
     align-items: center;
     margin-bottom: 8px;
     background: url('../img/bg/banner.png') center/cover no-repeat;
+    background-attachment: fixed;
 }
 
 .intro__title {
@@ -219,7 +220,8 @@ body {
     background: #F8FCFE;
     border: 1px solid #EDEFEF;
     position: relative;
-    transition: .3s;
+    cursor: default;
+    transition: border .3s;
 }
 
 .services__tab:hover {
@@ -237,24 +239,28 @@ body {
 }
 
 .services__content {
-    display: flex;
-    align-items: center;
+    display: none;
     gap: 15px;
+}
+
+.content_active {
+    display: flex;
 }
 
 .services__img {
     width: 192px;
     height: 139px;
+    object-fit: cover;
 }
 
 .services__text {
     font-weight: 300;
     font-size: 14px;
-    line-height: 1.79;
+    line-height: 1.64;
     color: #777777;
 }
 
-.active {
+.tab_active {
     color: #FFFFFF;
     background: #18CFAB;
     border: 1px solid #18CFAB;
