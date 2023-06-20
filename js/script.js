@@ -27,4 +27,73 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const icons = document.querySelectorAll('.testimonial__item');
+    const carousel = document.querySelector('.testimonial__carousel');
+
+
+    let current = 0;
+
+    carousel.addEventListener('click', (e) => {
+        const target = e.target;
+
+        if (target.className == 'testimonial__arrow testimonial__arrow_next' || target.closest('.testimonial__arrow_next svg')) {
+            if (current < icons.length - 1) {
+                current++;
+            } else {
+                current = 0;
+            }
+
+            icons.forEach((icon, i) => {
+                if (i === current) {
+                    icon.classList.add('testimonial__item_active');
+                } else {
+                    icon.classList.remove('testimonial__item_active');
+                }
+            });
+        }
+
+        if (target.className == 'testimonial__arrow testimonial__arrow_prev' || target.closest('.testimonial__arrow_prev svg')) {
+    
+            if (current <= 0) {
+                current = icons.length - 1;
+            } else {
+                current--;
+            }
+
+            icons.forEach((icon, i) => {
+                if (i === current) {
+                    icon.classList.add('testimonial__item_active');
+                } else {
+                    icon.classList.remove('testimonial__item_active');
+                }
+            });
+        }
+
+        if (target.nodeName == 'IMG') {
+            icons.forEach(icon => icon.classList.remove('testimonial__item_active'));
+            const index = Array.from(icons).indexOf(target.parentElement);
+            current = index;
+            icons[index].classList.add('testimonial__item_active')
+        }
+    });
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
