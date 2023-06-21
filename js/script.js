@@ -34,6 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let current = 0;
 
+    const authors = [
+        {fullname: 'Alice Green', position: 'Web Developer', image: 'img/reviews/review1.png', review: 'Integer dignissim, augue tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'},
+        {fullname: 'Jason Statham', position: 'Actor', image: 'img/reviews/review2.png', review: 'Integer dignissim, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'},
+        {fullname: 'Hasan Ali', position: 'UX Designer', image: 'img/reviews/review3.png', review: 'Augue tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'},
+        {fullname: 'Doris Jackman', position: 'Project Manager', image: 'img/reviews/review4.png', review: 'Uquam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'},
+    ]
+
     carousel.addEventListener('click', (e) => {
         const target = e.target;
 
@@ -76,6 +83,15 @@ document.addEventListener('DOMContentLoaded', () => {
             current = index;
             icons[index].classList.add('testimonial__item_active')
         }
+
+        icons.forEach((icon, i) => {
+            if (i === current) {
+                document.querySelector('.testimonial__name').innerText = authors[current].fullname;
+                document.querySelector('.testimonial__text').innerText = authors[current].review;
+                document.querySelector('.testimonial__position').innerText = authors[current].position;
+                document.querySelector('.testimonial__photo img').src = authors[current].image;
+            }
+        })
     });
 
 
