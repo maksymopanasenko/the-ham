@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const icons = document.querySelectorAll('.testimonial__item');
     const carousel = document.querySelector('.testimonial__carousel');
 
-
     let current = 0;
 
     const authors = [
@@ -96,6 +95,46 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     });
 
+    // button load more 
+
+    let tabTarget;
+    const moreBtn = document.querySelector('.work__btn');
+
+    const additionalProjects = [
+        {img: 'img/projects/work13.jpg', alt: 'project', data: 'web'},
+        {img: 'img/projects/work14.jpg', alt: 'project', data: 'graphic'},
+        {img: 'img/projects/work15.jpg', alt: 'project', data: 'landing'},
+        {img: 'img/projects/work16.jpg', alt: 'project', data: 'landing'},
+        {img: 'img/projects/work17.jpg', alt: 'project', data: 'wordpress'},
+        {img: 'img/projects/work18.jpg', alt: 'project', data: 'graphic'},
+        {img: 'img/projects/work19.jpg', alt: 'project', data: 'web'},
+        {img: 'img/projects/work20.jpg', alt: 'project', data: 'wordpress'},
+        {img: 'img/projects/work21.jpg', alt: 'project', data: 'wordpress'},
+        {img: 'img/projects/work22.jpg', alt: 'project', data: 'landing'},
+        {img: 'img/projects/work23.jpg', alt: 'project', data: 'web'},
+        {img: 'img/projects/work24.jpg', alt: 'project', data: 'graphic'},
+    ];
+    
+    moreBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const projectsParent = document.querySelector('.work__gallery');
+
+        additionalProjects.forEach(obj => {
+            const newListItem = document.createElement('li');
+            newListItem.classList.add('work__item');
+            newListItem.setAttribute('data-project', obj.data);
+            newListItem.innerHTML = `
+                <img src=${obj.img}  alt=${obj.alt}>
+            `;
+            projectsParent.append(newListItem);
+        });
+        
+        moreBtn.remove();
+
+        filterData(tabTarget);
+    });
+
 
     // filters
 
@@ -103,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filtersParent.addEventListener('click', (e) => {
         const target = e.target;
+        tabTarget = target;
 
         if (target.nodeName != 'LI') return;
         
