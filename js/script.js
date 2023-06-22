@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // slider
+
     const icons = document.querySelectorAll('.testimonial__item');
     const carousel = document.querySelector('.testimonial__carousel');
 
@@ -95,7 +97,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    // filters
 
+    const filtersParent = document.querySelector('.work__list');
+
+    filtersParent.addEventListener('click', (e) => {
+        const target = e.target;
+
+        if (target.nodeName != 'LI') return;
+        
+        filterData(target);
+    });
+
+
+    function filterData(currentTab) {
+        const tabs = document.querySelectorAll('.work__tab');
+        const projects = document.querySelectorAll('.work__item');
+
+        projects.forEach(project => {
+
+            if (currentTab.dataset.tab === 'all') {
+                project.style.display = 'block';
+            } else if (project.dataset.project === currentTab.dataset.tab) {
+                project.style.display = 'block';
+            } else {
+                project.style.display = 'none';
+            }
+        });
+
+        tabs.forEach((tab, i) => {
+            if (tab === currentTab) {
+                tab.classList.add('work__tab_active');
+            } else {
+                tab.classList.remove('work__tab_active')
+            }
+        });
+    }
     
 
 

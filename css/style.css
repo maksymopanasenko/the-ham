@@ -313,6 +313,7 @@ body {
     min-width: 76px;
     text-align: center;
     border-left: none;
+    cursor: pointer;
 }
 
 .work__tab:first-child {
@@ -509,6 +510,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.testimonial__photo img {
+    width: 143px;
 }
 
 .testimonial__carousel {
