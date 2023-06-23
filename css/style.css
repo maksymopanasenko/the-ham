@@ -350,32 +350,27 @@ body {
     justify-content: center;
     flex-direction: column;
     width: 100%;
+    height: 100%;
+    border-top: 2px solid #18CFAB;
+    animation: appear 1s;
 }
 
-.work__item-link path,
-.work__item-link rect:first-child,
-.work__item-link .work__item-label {
-    transition: .2s ease-in;
+@keyframes appear {
+    0% {
+        opacity: 0;
+    };
+    100% {
+        opacity: 1;
+    }
 }
 
-.work__item-link:hover path {
-    fill: #18CFAB;
-}
-
-.work__item-link:hover rect:first-child {
-    stroke: #18CFAB;
-}
-
-.work__item-link:hover .work__item-label {
-    color: #18CFAB;
-}
 
 .work__item-label {
     font-weight: 700;
     font-size: 14px;
     line-height: 1.78;
     text-transform: uppercase;
-    color: #4E4E4E;
+    color: #18CFAB;
     margin-top: 32px;
 }
 

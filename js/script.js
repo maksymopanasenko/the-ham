@@ -102,36 +102,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const additionalProjects = [
         {img: 'img/projects/work13.jpg', alt: 'project', data: 'web'},
+        {img: 'img/projects/work4.png', alt: 'project', data: 'graphic'},
+        {img: 'img/projects/work15.jpg', alt: 'project', data: 'landing'},
+        {img: 'img/projects/work6.png', alt: 'project', data: 'landing'},
+        {img: 'img/projects/work17.jpg', alt: 'project', data: 'wordpress'},
+        {img: 'img/projects/work18.jpg', alt: 'project', data: 'graphic'},
+        {img: 'img/projects/work9.png', alt: 'project', data: 'web'},
+        {img: 'img/projects/work20.jpg', alt: 'project', data: 'wordpress'},
+        {img: 'img/projects/work11.png', alt: 'project', data: 'wordpress'},
+        {img: 'img/projects/work22.jpg', alt: 'project', data: 'landing'},
+        {img: 'img/projects/work2.png', alt: 'project', data: 'web'},
+        {img: 'img/projects/work24.jpg', alt: 'project', data: 'graphic'},
+        {img: 'img/projects/work13.jpg', alt: 'project', data: 'web'},
         {img: 'img/projects/work14.jpg', alt: 'project', data: 'graphic'},
         {img: 'img/projects/work15.jpg', alt: 'project', data: 'landing'},
         {img: 'img/projects/work16.jpg', alt: 'project', data: 'landing'},
         {img: 'img/projects/work17.jpg', alt: 'project', data: 'wordpress'},
-        {img: 'img/projects/work18.jpg', alt: 'project', data: 'graphic'},
+        {img: 'img/projects/work8.png', alt: 'project', data: 'graphic'},
         {img: 'img/projects/work19.jpg', alt: 'project', data: 'web'},
         {img: 'img/projects/work20.jpg', alt: 'project', data: 'wordpress'},
         {img: 'img/projects/work21.jpg', alt: 'project', data: 'wordpress'},
         {img: 'img/projects/work22.jpg', alt: 'project', data: 'landing'},
-        {img: 'img/projects/work23.jpg', alt: 'project', data: 'web'},
+        {img: 'img/projects/work3.png', alt: 'project', data: 'web'},
         {img: 'img/projects/work24.jpg', alt: 'project', data: 'graphic'},
     ];
+
+    
+    const projectsParent = document.querySelector('.work__gallery');
+
+
     
     moreBtn.addEventListener('click', (e) => {
         e.preventDefault();
         
-        const projectsParent = document.querySelector('.work__gallery');
+        if (projectsParent.children.length === additionalProjects.length) {
+            addListItem(12, 24);
+            moreBtn.remove();
+        } else {
+            addListItem(0, 12);
+        }
 
-        additionalProjects.forEach(obj => {
-            const newListItem = document.createElement('li');
-            newListItem.classList.add('work__item');
-            newListItem.setAttribute('data-project', obj.data);
-            newListItem.innerHTML = `
-                <img src=${obj.img}  alt=${obj.alt}>
-            `;
-            projectsParent.append(newListItem);
-        });
+        function addListItem(n, m) {
+            additionalProjects.slice(n, m).forEach(obj => {
+                const newListItem = document.createElement('li');
+                newListItem.classList.add('work__item');
+                newListItem.setAttribute('data-project', obj.data);
+                newListItem.innerHTML = `
+                    <img src=${obj.img}  alt=${obj.alt}>
+                `;
+                projectsParent.append(newListItem);
+            });
+        }
         
-        moreBtn.remove();
-
         filterData(tabTarget);
     });
 
@@ -151,6 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function filterData(currentTab) {
+
+        if (!currentTab) return false;
         const tabs = document.querySelectorAll('.work__tab');
         const projects = document.querySelectorAll('.work__item');
 
