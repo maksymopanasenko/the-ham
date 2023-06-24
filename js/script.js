@@ -174,27 +174,43 @@ document.addEventListener('DOMContentLoaded', () => {
     
     moreBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        if (projectsParent.children.length === additionalProjects.length) {
-            addListItem(12, 24);
-            moreBtn.remove();
-        } else {
-            addListItem(0, 12);
-        }
 
-        function addListItem(n, m) {
-            additionalProjects.slice(n, m).forEach(obj => {
-                const newListItem = document.createElement('li');
-                newListItem.classList.add('work__item');
-                newListItem.setAttribute('data-project', obj.data);
-                newListItem.innerHTML = `
-                    <img src=${obj.img}  alt=${obj.alt}>
-                `;
-                projectsParent.append(newListItem);
-            });
-        }
+        moreBtn.setAttribute('disabled', '');
+
+        const spinner = document.createElement('img');
+        spinner.classList.add('spinner');
+        spinner.setAttribute('src', '../icons/spinner.gif');
+        spinner.setAttribute('alt', 'spinner');
+
+        moreBtn.insertAdjacentElement('beforebegin', spinner);
+
+        setTimeout(() => {
+            spinner.remove();
+            moreBtn.removeAttribute('disabled');
+
+            if (projectsParent.children.length === additionalProjects.length) {
+                addListItem(12, 24);
+                moreBtn.remove();
+            } else {
+                addListItem(0, 12);
+            }
+    
+            function addListItem(n, m) {
+                additionalProjects.slice(n, m).forEach(obj => {
+                    const newListItem = document.createElement('li');
+                    newListItem.classList.add('work__item');
+                    newListItem.setAttribute('data-project', obj.data);
+                    newListItem.innerHTML = `
+                        <img src=${obj.img}  alt=${obj.alt}>
+                    `;
+                    projectsParent.append(newListItem);
+                });
+            }
+            
+            filterData(tabTarget);
+        }, 2000)
         
-        filterData(tabTarget);
+
     });
 
 

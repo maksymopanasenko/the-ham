@@ -168,7 +168,6 @@ body {
 }
 
 .title {
-    /* max-width: 226px; */
     text-align: center;
     margin: 0 auto;
     font-size: 36px;
@@ -389,10 +388,15 @@ body {
     text-transform: uppercase;
     color: #FFFFFF;
     border-radius: 5px;
-    max-width: 165px;
+    width: 165px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 auto;
+}
+
+.spinner {
+    display: block;
     margin: 0 auto;
 }
 
