@@ -35,12 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let current = 0;
 
-    const authors = [
-        {fullname: 'Alice Green', position: 'Web Developer', image: 'img/reviews/review1.png', review: 'Integer dignissim, augue tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'},
-        {fullname: 'Jason Statham', position: 'Actor', image: 'img/reviews/review2.png', review: 'Integer dignissim, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'},
-        {fullname: 'Hasan Ali', position: 'UX Designer', image: 'img/reviews/review3.png', review: 'Augue tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'},
-        {fullname: 'Doris Jackman', position: 'Project Manager', image: 'img/reviews/review4.png', review: 'Uquam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'},
-    ]
 
     carousel.addEventListener('click', (e) => {
         const target = e.target;
@@ -85,14 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
             icons[index].classList.add('testimonial__item_active')
         }
 
-        icons.forEach((icon, i) => {
-            if (i === current) {
-                document.querySelector('.testimonial__name').innerText = authors[current].fullname;
-                document.querySelector('.testimonial__text').innerText = authors[current].review;
-                document.querySelector('.testimonial__position').innerText = authors[current].position;
-                document.querySelector('.testimonial__photo img').src = authors[current].image;
-            }
-        })
+        const step = 100 * current + '%';
+        document.querySelector('.testimonial__slides').style.right = step;
     });
 
     // button load more 
@@ -137,8 +125,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (img.nodeName != 'IMG') return false;
 
+        const dataAttr = img.parentElement.dataset.project;
+        let text;
+
+        document.querySelectorAll('.work__tab').forEach(tab => {
+            if (tab.dataset.tab == dataAttr) {
+                text = tab.innerText;
+            };
+        })
+
         const hoverElem = document.createElement('a');
-        hoverElem.classList.add('work__item-link');
+        hoverElem.classList.add('work__item-link', 'appear');
         hoverElem.setAttribute('href', '#');
         hoverElem.innerHTML = `
             <svg width="88" height="43" viewBox="0 0 88 43" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -150,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </g>
             </svg>
             <h6 class="work__item-label">creative design</h6>
-            <span class="work__item-sublabel">Web Design</span>
+            <span class="work__item-sublabel">${text}</span>
         `;
 
         img.style.display = 'none';
@@ -168,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
     projectsParent.addEventListener('mouseleave', () => {
         hoveredImg.nextElementSibling.remove();
         hoveredImg.style.display = 'block';
-        console.log('leave');
         hoveredImg = null;
     });
     

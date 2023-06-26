@@ -147,7 +147,7 @@
                 </ul>
 
                 <ul class="work__gallery">
-                    <li class="work__item">
+                    <li class="work__item" data-project="landing">
                         <img src="img/projects/work1.jpg" alt="project">
                     </li>
                     <li class="work__item" data-project="graphic">
@@ -283,49 +283,83 @@
         <section class="testimonial">
             <div class="container">
                 <h4 class="title title_light">What People Say About theHam</h4>
-                <div class="testimonial__content">
-                    <img src="icons/quote.svg" alt="quote" class="testimonial__quote">
-                    <p class="testimonial__text">
-                        Integer dignissim, augue tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.
-                    </p>
-                    <p class="testimonial__author"><span class="testimonial__name">Alice Green</span><br> <span class="testimonial__position">Web Developer</span></p>
-                    <div class="testimonial__photo">
-                        <img src="img/reviews/review1.png" alt="photo1">
+                <div class="testimonial__body">
+                    <div class="testimonial__slides">
+                        <div class="testimonial__content">
+                            <img src="icons/quote.svg" alt="quote" class="testimonial__quote">
+                            <p class="testimonial__text">
+                                Integer dignissim, augue tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.
+                            </p>
+                            <p class="testimonial__author"><span class="testimonial__name">Alice Green</span><br> <span class="testimonial__position">Web Developer</span></p>
+                            <div class="testimonial__photo">
+                                <img src="img/reviews/review1.png" alt="photo1">
+                            </div>
+                        </div>
+                        <div class="testimonial__content">
+                            <img src="icons/quote.svg" alt="quote" class="testimonial__quote">
+                            <p class="testimonial__text">
+                                Integer dignissim, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.
+                            </p>
+                            <p class="testimonial__author"><span class="testimonial__name">Jason Statham</span><br> <span class="testimonial__position">Actor</span></p>
+                            <div class="testimonial__photo">
+                                <img src="img/reviews/review2.png" alt="photo1">
+                            </div>
+                        </div>
+                        <div class="testimonial__content">
+                            <img src="icons/quote.svg" alt="quote" class="testimonial__quote">
+                            <p class="testimonial__text">
+                                Augue tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.
+                            </p>
+                            <p class="testimonial__author"><span class="testimonial__name">Hasan Ali</span><br> <span class="testimonial__position">UX Designer</span></p>
+                            <div class="testimonial__photo">
+                                <img src="img/reviews/review3.png" alt="photo1">
+                            </div>
+                        </div>
+                        <div class="testimonial__content">
+                            <img src="icons/quote.svg" alt="quote" class="testimonial__quote">
+                            <p class="testimonial__text">
+                                Uquam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.
+                            </p>
+                            <p class="testimonial__author"><span class="testimonial__name">Amanda Jackmann</span><br> <span class="testimonial__position">Project Manager</span></p>
+                            <div class="testimonial__photo">
+                                <img src="img/reviews/review4.png" alt="photo1">
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="testimonial__carousel">
-                    <div class="testimonial__arrow testimonial__arrow_prev">
-                        <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.50764 12.5077L7.81261 11.1058L3.52463 6.49643L7.81261 1.88999L6.50764 0.486816L0.914566 6.49643L6.50764 12.5077Z" fill="#BBBBBB"/>
-                        </svg>                            
-                    </div>
-
-                    <ul class="testimonial__list">
-                        <li class="testimonial__item testimonial__item_active">
-                            <img src="img/reviews/review1.png" alt="photo2">
-                        </li>
-                        <li class="testimonial__item">
-                            <img src="img/reviews/review2.png" alt="photo3">
-                        </li>
-                        <li class="testimonial__item">
-                            <img src="img/reviews/review3.png" alt="photo4">
-                        </li>
-                        <li class="testimonial__item">
-                            <img src="img/reviews/review4.png" alt="photo5">
-                        </li>
-                    </ul>
-
-                    <div class="testimonial__arrow testimonial__arrow_next">
-                        <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.50764 12.5077L7.81261 11.1058L3.52463 6.49643L7.81261 1.88999L6.50764 0.486816L0.914566 6.49643L6.50764 12.5077Z" fill="#BBBBBB"/>
-                        </svg> 
+    
+                    <div class="testimonial__carousel">
+                        <div class="testimonial__arrow testimonial__arrow_prev">
+                            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.50764 12.5077L7.81261 11.1058L3.52463 6.49643L7.81261 1.88999L6.50764 0.486816L0.914566 6.49643L6.50764 12.5077Z" fill="#BBBBBB"/>
+                            </svg>                            
+                        </div>
+    
+                        <ul class="testimonial__list">
+                            <li class="testimonial__item testimonial__item_active">
+                                <img src="img/reviews/review1.png" alt="photo2">
+                            </li>
+                            <li class="testimonial__item">
+                                <img src="img/reviews/review2.png" alt="photo3">
+                            </li>
+                            <li class="testimonial__item">
+                                <img src="img/reviews/review3.png" alt="photo4">
+                            </li>
+                            <li class="testimonial__item">
+                                <img src="img/reviews/review4.png" alt="photo5">
+                            </li>
+                        </ul>
+    
+                        <div class="testimonial__arrow testimonial__arrow_next">
+                            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.50764 12.5077L7.81261 11.1058L3.52463 6.49643L7.81261 1.88999L6.50764 0.486816L0.914566 6.49643L6.50764 12.5077Z" fill="#BBBBBB"/>
+                            </svg> 
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="gallery">
+        <section class="gallery" id="gallery">
             <div class="container">
                 <div class="title">Gallery of best images</div>
                 <div class="gallery__content">
