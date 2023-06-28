@@ -1,6 +1,17 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.querySelector('.gallery__list');
+    const masonry = new Masonry(grid, {
+        itemSelector: '.gallery__item',
+        columnWidth: 373,
+        gutter: 20
+    });
+
+    imagesLoaded(grid).on( 'progress', function() {
+        masonry.layout();
+    });
+
     const tabsParent = document.querySelector('.services__list');
 
     tabsParent.addEventListener('click', (e) => {
@@ -34,10 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const carousel = document.querySelector('.testimonial__carousel');
 
     let current = 0;
+    let prevCurrent;
 
 
     carousel.addEventListener('click', (e) => {
         const target = e.target;
+        prevCurrent = current;
 
         if (target.className == 'testimonial__arrow testimonial__arrow_next' || target.closest('.testimonial__arrow_next svg')) {
             if (current < icons.length - 1) {
@@ -76,53 +89,50 @@ document.addEventListener('DOMContentLoaded', () => {
             icons.forEach(icon => icon.classList.remove('testimonial__item_active'));
             const index = Array.from(icons).indexOf(target.parentElement);
             current = index;
-            icons[index].classList.add('testimonial__item_active')
+            icons[index].classList.add('testimonial__item_active');
         }
 
+        document.querySelectorAll('.testimonial__content').forEach(item => {
+            item.style.opacity = 1;
+        });
+
+        if (Math.abs(current - prevCurrent) > 1) {
+            document.querySelectorAll('.testimonial__content').forEach((item, i) => {
+                
+                
+                if (i != current && i != prevCurrent) {
+                    item.style.opacity = 0;
+                }
+            })
+        }
+                    
         const step = 100 * current + '%';
+
         document.querySelector('.testimonial__slides').style.right = step;
     });
 
     // button load more 
 
     let tabTarget;
-    const moreBtn = document.querySelector('.work__btn');
+    let hoveredImg;
+    let additionalProjects,
+        additionalGalleryImages;
 
-    const additionalProjects = [
-        {img: 'img/projects/work13.jpg', alt: 'project', data: 'web'},
-        {img: 'img/projects/work4.png', alt: 'project', data: 'graphic'},
-        {img: 'img/projects/work15.jpg', alt: 'project', data: 'landing'},
-        {img: 'img/projects/work6.png', alt: 'project', data: 'landing'},
-        {img: 'img/projects/work17.jpg', alt: 'project', data: 'wordpress'},
-        {img: 'img/projects/work18.jpg', alt: 'project', data: 'graphic'},
-        {img: 'img/projects/work9.png', alt: 'project', data: 'web'},
-        {img: 'img/projects/work20.jpg', alt: 'project', data: 'wordpress'},
-        {img: 'img/projects/work11.png', alt: 'project', data: 'wordpress'},
-        {img: 'img/projects/work22.jpg', alt: 'project', data: 'landing'},
-        {img: 'img/projects/work2.png', alt: 'project', data: 'web'},
-        {img: 'img/projects/work24.jpg', alt: 'project', data: 'graphic'},
-        {img: 'img/projects/work13.jpg', alt: 'project', data: 'web'},
-        {img: 'img/projects/work14.jpg', alt: 'project', data: 'graphic'},
-        {img: 'img/projects/work15.jpg', alt: 'project', data: 'landing'},
-        {img: 'img/projects/work16.jpg', alt: 'project', data: 'landing'},
-        {img: 'img/projects/work17.jpg', alt: 'project', data: 'wordpress'},
-        {img: 'img/projects/work8.png', alt: 'project', data: 'graphic'},
-        {img: 'img/projects/work19.jpg', alt: 'project', data: 'web'},
-        {img: 'img/projects/work20.jpg', alt: 'project', data: 'wordpress'},
-        {img: 'img/projects/work21.jpg', alt: 'project', data: 'wordpress'},
-        {img: 'img/projects/work22.jpg', alt: 'project', data: 'landing'},
-        {img: 'img/projects/work3.png', alt: 'project', data: 'web'},
-        {img: 'img/projects/work24.jpg', alt: 'project', data: 'graphic'},
-    ];
+    fetch("./database/db.json")
+        .then((res) => res.json())
+        .then((database) => {
+            additionalProjects = database.works;
+            additionalGalleryImages = database.gallery;
+        });
 
     
-    const projectsParent = document.querySelector('.work__gallery');
 
-    let hoveredImg;
+    const projectsParent = document.querySelector('.work__gallery');
 
     projectsParent.addEventListener('mouseover', (e) => {
         const img = e.target;
 
+        if (img == projectsParent && hoveredImg) unhoverImg();
         if (img.nodeName != 'IMG') return false;
 
         const dataAttr = img.parentElement.dataset.project;
@@ -153,60 +163,81 @@ document.addEventListener('DOMContentLoaded', () => {
         img.style.display = 'none';
         img.parentElement.append(hoverElem);
 
-        if (hoveredImg) {
-            hoveredImg.nextElementSibling.remove();
-            hoveredImg.style.display = 'block';
-        }
+        if (hoveredImg) unhoverImg();
 
         hoveredImg = img;
         
     });
 
     projectsParent.addEventListener('mouseleave', () => {
+        if (hoveredImg) unhoverImg();
+    });
+
+    function unhoverImg() {
         hoveredImg.nextElementSibling.remove();
         hoveredImg.style.display = 'block';
         hoveredImg = null;
-    });
+    }
+
+    document.querySelectorAll('.load__btn').forEach(btn => {
+        btn.addEventListener('click' , (e) => {
+            const target = e.target.closest('button');
+
+            target.setAttribute('disabled', '');
+
+            const spinner = document.createElement('img');
+            spinner.classList.add('spinner');
+            spinner.setAttribute('src', '../icons/spinner.gif');
+            spinner.setAttribute('alt', 'spinner');
+
+            target.insertAdjacentElement('beforebegin', spinner);
+
+            setTimeout(() => {
+                spinner.remove();
+                target.removeAttribute('disabled');
     
-    moreBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+                if (target.classList.contains('gallery__btn')) {
+                    addGalleryListItem();
+                    target.remove();
+                } else {
+                    if (projectsParent.children.length === additionalProjects.length) {
+                        addWorkListItem(12, 24);
+                        target.remove();
+                    } else {
+                        addWorkListItem(0, 12);
+                    }
 
-        moreBtn.setAttribute('disabled', '');
-
-        const spinner = document.createElement('img');
-        spinner.classList.add('spinner');
-        spinner.setAttribute('src', '../icons/spinner.gif');
-        spinner.setAttribute('alt', 'spinner');
-
-        moreBtn.insertAdjacentElement('beforebegin', spinner);
-
-        setTimeout(() => {
-            spinner.remove();
-            moreBtn.removeAttribute('disabled');
-
-            if (projectsParent.children.length === additionalProjects.length) {
-                addListItem(12, 24);
-                moreBtn.remove();
-            } else {
-                addListItem(0, 12);
-            }
-    
-            function addListItem(n, m) {
-                additionalProjects.slice(n, m).forEach(obj => {
-                    const newListItem = document.createElement('li');
-                    newListItem.classList.add('work__item');
-                    newListItem.setAttribute('data-project', obj.data);
-                    newListItem.innerHTML = `
-                        <img src=${obj.img}  alt=${obj.alt}>
-                    `;
-                    projectsParent.append(newListItem);
-                });
-            }
-            
-            filterData(tabTarget);
-        }, 2000)
+                    filterData(tabTarget);
+                }
         
+                function addWorkListItem(n, m) {
+                    additionalProjects.slice(n, m).forEach(obj => {
+                        const newListItem = document.createElement('li');
+                        newListItem.classList.add('work__item');
+                        newListItem.setAttribute('data-project', obj.data);
+                        newListItem.innerHTML = `
+                            <img src=${obj.img}  alt=${obj.alt}>
+                        `;
+                        projectsParent.append(newListItem);
+                    });
+                }
 
+                function addGalleryListItem() {
+                    const galleryContainer = document.querySelector('.gallery__list');
+
+                    additionalGalleryImages.forEach(obj => {
+                        const newListItem = document.createElement('li');
+                        newListItem.classList.add('gallery__item');
+                        newListItem.innerHTML = `
+                            <img src=${obj.img} alt=${obj.alt}>
+                        `;
+                        galleryContainer.append(newListItem);
+                        masonry.appended(newListItem);
+                    });
+                }
+                
+            }, 2000);
+        });
     });
 
 
@@ -245,24 +276,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tab === currentTab) {
                 tab.classList.add('work__tab_active');
             } else {
-                tab.classList.remove('work__tab_active')
+                tab.classList.remove('work__tab_active');
             }
         });
     }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });

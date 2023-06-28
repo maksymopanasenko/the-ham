@@ -1,0 +1,43 @@
+{
+    "works": [
+        {"img": "img/projects/work13.jpg", "alt": "project", "data": "web"},
+        {"img": "img/projects/work4.png", "alt": "project", "data": "graphic"},
+        {"img": "img/projects/work15.jpg", "alt": "project", "data": "landing"},
+        {"img": "img/projects/work6.png", "alt": "project", "data": "landing"},
+        {"img": "img/projects/work17.jpg", "alt": "project", "data" : "wordpress"},
+        {"img": "img/projects/work18.jpg", "alt": "project", "data": "graphic"},
+        {"img": "img/projects/work9.png", "alt": "project", "data": "web"},
+        {"img": "img/projects/work20.jpg", "alt": "project", "data": "wordpress"},
+        {"img": "img/projects/work11.png", "alt": "project", "data": "wordpress"},
+        {"img": "img/projects/work22.jpg", "alt": "project", "data": "landing"},
+        {"img": "img/projects/work2.png", "alt": "project", "data": "web"},
+        {"img": "img/projects/work24.jpg", "alt": "project", "data": "graphic"},
+        {"img": "img/projects/work13.jpg", "alt": "project", "data": "web"},
+        {"img": "img/projects/work14.jpg", "alt": "project", "data": "graphic"},
+        {"img": "img/projects/work15.jpg", "alt": "project", "data": "landing"},
+        {"img": "img/projects/work16.jpg", "alt": "project", "data": "landing"},
+        {"img": "img/projects/work17.jpg", "alt": "project", "data": "wordpress"},
+        {"img": "img/projects/work8.png", "alt": "project", "data": "graphic"},
+        {"img": "img/projects/work19.jpg", "alt": "project", "data": "web"},
+        {"img": "img/projects/work20.jpg", "alt": "project", "data": "wordpress"},
+        {"img": "img/projects/work21.jpg", "alt": "project", "data": "wordpress"},
+        {"img": "img/projects/work22.jpg", "alt": "project", "data": "landing"},
+        {"img": "img/projects/work3.png", "alt": "project", "data": "web"},
+        {"img": "img/projects/work24.jpg", "alt": "project", "data": "graphic"}
+    ],
+    "gallery": [
+        {"img": "img/gallery/gallery1.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery2.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery3.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery4.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery5.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery6.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery7.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery8.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery9.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery10.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery11.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery12.jfif", "alt": "image"},
+        {"img": "img/gallery/gallery13.jfif", "alt": "image"}
+    ]
+}
