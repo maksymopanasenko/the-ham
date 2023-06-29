@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let current = 0;
     let prevCurrent;
 
-
     carousel.addEventListener('click', (e) => {
         const target = e.target;
         prevCurrent = current;
@@ -111,12 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.testimonial__slides').style.right = step;
     });
 
-    // button load more 
+    // works hover effect
 
-    let tabTarget;
     let hoveredImg;
-    let additionalProjects,
-        additionalGalleryImages;
 
     fetch("./database/db.json")
         .then((res) => res.json())
@@ -166,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (hoveredImg) unhoverImg();
 
         hoveredImg = img;
-        
     });
 
     projectsParent.addEventListener('mouseleave', () => {
@@ -179,6 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
         hoveredImg = null;
     }
 
+    // button load more 
+    
+    let tabTarget;
+    let additionalProjects,
+        additionalGalleryImages;
+
     document.querySelectorAll('.load__btn').forEach(btn => {
         btn.addEventListener('click' , (e) => {
             const target = e.target.closest('button');
@@ -187,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const spinner = document.createElement('img');
             spinner.classList.add('spinner');
-            spinner.setAttribute('src', '../icons/spinner.gif');
+            spinner.setAttribute('src', 'icons/spinner.gif');
             spinner.setAttribute('alt', 'spinner');
 
             target.insertAdjacentElement('beforebegin', spinner);
@@ -229,17 +230,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         const newListItem = document.createElement('li');
                         newListItem.classList.add('gallery__item');
                         newListItem.innerHTML = `
-                            <img src=${obj.img} alt=${obj.alt}>
+                            <img src=${obj.img} alt=${obj.alt} class="gallery__image">
                         `;
                         galleryContainer.append(newListItem);
                         masonry.appended(newListItem);
                     });
                 }
-                
+
             }, 2000);
         });
     });
-
 
     // filters
 
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tabTarget = target;
 
         if (target.nodeName != 'LI') return;
-        
+
         filterData(target);
     });
 
@@ -279,6 +279,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 tab.classList.remove('work__tab_active');
             }
         });
+    }
+    
+    // gallery hover effect
+
+    let hoveredItem;
+
+    const galleryParent = document.querySelector('.gallery__content');
+
+    galleryParent.addEventListener('mouseover', (e) => {
+        const target = e.target;
+        
+        if (target.nodeName == 'UL' && hoveredItem) unhoverImge();
+        if (!target.classList.contains('gallery__image')) return false;
+
+        const hoverElem = document.createElement('div');
+        hoverElem.classList.add('gallery__overlay');
+        hoverElem.innerHTML = `
+            <button>
+                <img src="icons/search-gallery.svg" alt="search">
+            </button>
+            <button>
+                <img src="icons/arrows-rect.svg" alt="zoom">
+            </button>
+        `;
+
+        target.parentElement.append(hoverElem);
+
+        if (hoveredItem) unhoverImge();
+
+        hoveredItem = target;
+    });
+
+    galleryParent.addEventListener('mouseleave', () => {
+        if (hoveredItem) unhoverImge();
+    });
+
+    function unhoverImge() {
+        hoveredItem.nextElementSibling.remove();
+        hoveredItem = null;
     }
     
 });
