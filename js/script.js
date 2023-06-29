@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     projectsParent.addEventListener('mouseover', (e) => {
         const img = e.target;
 
-        if (img == projectsParent && hoveredImg) unhoverImg();
+        if (img == projectsParent && hoveredImg) unhoverWorkImg();
         if (img.nodeName != 'IMG') return false;
 
         const dataAttr = img.parentElement.dataset.project;
@@ -159,16 +159,16 @@ document.addEventListener('DOMContentLoaded', () => {
         img.style.display = 'none';
         img.parentElement.append(hoverElem);
 
-        if (hoveredImg) unhoverImg();
+        if (hoveredImg) unhoverWorkImg();
 
         hoveredImg = img;
     });
 
     projectsParent.addEventListener('mouseleave', () => {
-        if (hoveredImg) unhoverImg();
+        if (hoveredImg) unhoverWorkImg();
     });
 
-    function unhoverImg() {
+    function unhoverWorkImg() {
         hoveredImg.nextElementSibling.remove();
         hoveredImg.style.display = 'block';
         hoveredImg = null;
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     galleryParent.addEventListener('mouseover', (e) => {
         const target = e.target;
         
-        if (target.nodeName == 'UL' && hoveredItem) unhoverImge();
+        if (target.nodeName == 'UL' && hoveredItem) unhoverGalleryImg();
         if (!target.classList.contains('gallery__image')) return false;
 
         const hoverElem = document.createElement('div');
@@ -306,16 +306,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         target.parentElement.append(hoverElem);
 
-        if (hoveredItem) unhoverImge();
+        if (hoveredItem) unhoverGalleryImg();
 
         hoveredItem = target;
     });
 
     galleryParent.addEventListener('mouseleave', () => {
-        if (hoveredItem) unhoverImge();
+        if (hoveredItem) unhoverGalleryImg();
     });
 
-    function unhoverImge() {
+    function unhoverGalleryImg() {
         hoveredItem.nextElementSibling.remove();
         hoveredItem = null;
     }
